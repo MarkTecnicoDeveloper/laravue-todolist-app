@@ -38,6 +38,9 @@ import LoginMenu from '../components/Auth/LoginMenu.vue';
 import { ref } from 'vue';
 import axiosClient from '../axios';
 import Cookie from 'js-cookie';
+import { useUserStore } from '../store/userStore';
+
+const userStore = useUserStore();
 
 const user = ref({
 	email: '',
@@ -50,6 +53,7 @@ function login() {
 	axiosClient.post('v1/login', payload).then((response) => {
 		const token = `${response.data.token_type} ${response.data.acess_token}`;
 		Cookie.set('_todolist_token', token, { expires: 30 });
+		userStore.user = response.data.data;
 	});
 }
 </script>
