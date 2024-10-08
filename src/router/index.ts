@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
+import Auth from '../layouts/Auth.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
-import Auth from '../layouts/Auth.vue';
+import VerifyEmail from '../views/VerifyEmail.vue';
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -18,6 +19,18 @@ const routes: Array<RouteRecordRaw> = [
 				path: '/register',
 				name: 'register',
 				component: Register,
+			},
+			{
+				path: '/verificar-email',
+				name: 'verifyEmail',
+				component: VerifyEmail,
+				beforeEnter: (to, from, next) => {
+					if (!to.query?.token) {
+						next({ name: 'login' });
+					}
+
+					next();
+				},
 			},
 		],
 	},
