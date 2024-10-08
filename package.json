@@ -11,14 +11,18 @@
     "biome:format:write": "biome format --write ./src"
   },
   "dependencies": {
+    "@vee-validate/yup": "^4.13.2",
     "axios": "^1.7.7",
+    "js-cookie": "^3.0.5",
     "pinia": "^2.2.3",
     "vee-validate": "^4.13.2",
     "vue": "^3.4.37",
-    "vue-router": "^4.4.5"
+    "vue-router": "^4.4.5",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.2",
+    "@types/js-cookie": "^3.0.6",
     "@vitejs/plugin-vue": "^5.1.2",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.47",
