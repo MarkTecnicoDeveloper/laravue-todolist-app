@@ -4,6 +4,7 @@ import Auth from '../layouts/Auth.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import VerifyEmail from '../views/VerifyEmail.vue';
+import ForgotPassword from '../views/ForgotPassword.vue';
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -31,6 +32,11 @@ const routes: Array<RouteRecordRaw> = [
 
 					next();
 				},
+			},
+			{
+				path: '/esqueci-senha',
+				name: 'forgotPassword',
+				component: ForgotPassword,
 			},
 		],
 	},

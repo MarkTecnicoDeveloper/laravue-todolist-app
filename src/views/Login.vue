@@ -38,7 +38,7 @@
                 </button>
                 <div class="my-4 text-center">
                     <RouterLink
-                        to=""
+                        :to="{ name: 'forgotPassword' }"
                         class="text-sm font-light"
                     >
                         Esqueci minha senha
@@ -98,7 +98,7 @@ function onSuccess(values) {
 	login();
 }
 
-function onInvalidSubmit({ values, errors, results }) {}
+function onInvalidSubmit() {}
 
 const onSubmit = handleSubmit(onSuccess, onInvalidSubmit);
 

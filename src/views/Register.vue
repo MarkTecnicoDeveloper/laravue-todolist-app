@@ -116,7 +116,7 @@ function onSuccess(values) {
 	register();
 }
 
-function onInvalidSubmit({ values, errors, results }) {}
+function onInvalidSubmit() {}
 
 const onSubmit = handleSubmit(onSuccess, onInvalidSubmit);
 

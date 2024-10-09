@@ -3,4 +3,5 @@ export default {
 	LoginInvalidException: 'Ops! E-mail e/ou senha invalidos.',
 	UserHasBeenTakenException: 'Ops! Parece que este usuarios já existe',
 	VerifyEmailTokenInvalidException: 'Ops! Parece que este token está inválido.',
+	UserNotFoundException: 'Ops! Parece que este usuario no existe',
 };
