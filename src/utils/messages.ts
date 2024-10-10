@@ -4,4 +4,6 @@ export default {
 	UserHasBeenTakenException: 'Ops! Parece que este usuarios já existe',
 	VerifyEmailTokenInvalidException: 'Ops! Parece que este token está inválido.',
 	UserNotFoundException: 'Ops! Parece que este usuario no existe',
+	ResetPasswordTokenInvalidException:
+		'Ops! Parece que este token esta invalido',
 };

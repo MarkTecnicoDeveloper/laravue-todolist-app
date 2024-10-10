@@ -5,6 +5,7 @@ import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import VerifyEmail from '../views/VerifyEmail.vue';
 import ForgotPassword from '../views/ForgotPassword.vue';
+import ResetPassword from '../views/ResetPassword.vue';
 
 const routes: Array<RouteRecordRaw> = [
 	{
@@ -37,6 +38,18 @@ const routes: Array<RouteRecordRaw> = [
 				path: '/esqueci-senha',
 				name: 'forgotPassword',
 				component: ForgotPassword,
+			},
+			{
+				path: '/recuperar-senha',
+				name: 'resetPassword',
+				component: ResetPassword,
+				beforeEnter: (to, from, next) => {
+					if (!to.query?.token) {
+						next({ name: 'login' });
+					}
+
+					next();
+				},
 			},
 		],
 	},
