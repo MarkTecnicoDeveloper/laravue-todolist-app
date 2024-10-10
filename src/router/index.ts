@@ -6,50 +6,90 @@ import Register from '../views/Register.vue';
 import VerifyEmail from '../views/VerifyEmail.vue';
 import ForgotPassword from '../views/ForgotPassword.vue';
 import ResetPassword from '../views/ResetPassword.vue';
+import Default from '../layouts/Default.vue';
+import Home from '../views/Home.vue';
+import Guard from '../service/middleware';
 
 const routes: Array<RouteRecordRaw> = [
 	{
 		path: '/',
-		component: Auth,
+		component: Default,
+		beforeEnter: Guard.redirectIfNotAuthenticated,
 		children: [
 			{
-				path: '/login',
+				path: '',
+				name: 'index',
+				component: Home,
+			},
+		],
+	},
+	{
+		path: '/login',
+		component: Auth,
+		beforeEnter: Guard.redirectIfAuthenticated,
+		children: [
+			{
+				path: '',
 				name: 'login',
 				component: Login,
 			},
+		],
+	},
+	{
+		path: '/register',
+		component: Auth,
+		children: [
 			{
-				path: '/register',
+				path: '',
 				name: 'register',
 				component: Register,
 			},
+		],
+	},
+	{
+		path: '/verificar-email',
+		component: Auth,
+		beforeEnter: (to, from, next) => {
+			if (!to.query?.token) {
+				next({ name: 'login' });
+			}
+
+			next();
+		},
+		children: [
 			{
-				path: '/verificar-email',
+				path: '',
 				name: 'verifyEmail',
 				component: VerifyEmail,
-				beforeEnter: (to, from, next) => {
-					if (!to.query?.token) {
-						next({ name: 'login' });
-					}
-
-					next();
-				},
 			},
+		],
+	},
+	{
+		path: '/esqueci-senha',
+		component: Auth,
+		children: [
 			{
-				path: '/esqueci-senha',
+				path: '',
 				name: 'forgotPassword',
 				component: ForgotPassword,
 			},
+		],
+	},
+	{
+		path: '/recuperar-senha',
+		component: Auth,
+		beforeEnter: (to, from, next) => {
+			if (!to.query?.token) {
+				next({ name: 'login' });
+			}
+
+			next();
+		},
+		children: [
 			{
-				path: '/recuperar-senha',
+				path: '',
 				name: 'resetPassword',
 				component: ResetPassword,
-				beforeEnter: (to, from, next) => {
-					if (!to.query?.token) {
-						next({ name: 'login' });
-					}
-
-					next();
-				},
 			},
 		],
 	},

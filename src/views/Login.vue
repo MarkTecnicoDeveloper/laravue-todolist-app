@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import Cookie from 'js-cookie';
+import Cookie from '../service/cookie';
 import { useForm } from 'vee-validate';
 import { ref } from 'vue';
 import * as yup from 'yup';
@@ -113,7 +113,7 @@ function login() {
 		.post('v1/login', payload)
 		.then((response) => {
 			const token = `${response.data.token_type} ${response.data.acess_token}`;
-			Cookie.set('_todolist_token', token, { expires: 30 });
+			Cookie.setToken(token);
 			userStore.user = response.data.data;
 		})
 		.catch((e) => {
